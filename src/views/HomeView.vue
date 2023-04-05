@@ -304,7 +304,20 @@
           nom11: [],
           nom12: [],
           nom13: []
-        }
+        },
+        planningDays: {
+          lundiAm: [],
+          lundiPm: [],
+          mardiAm: [],
+          mardiPm: [],
+          mercrediAm: [],
+          mercrediPm: [],
+          jeudiAm: [],
+          jeudiPm: [],
+          vendrediAm: [],
+          vendrediPm: []
+        },
+        jour: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
 
       }
     },
@@ -315,17 +328,65 @@
           for (let x in this.taches[i]) {
             if (x == "jour") {
               if (this.taches[i][x] == "tous") {
-                console.log(this.taches[i][x])
-              }else{
-                console.log(this.taches[i][x])
+                if ("nbrAm" in this.taches[i]) {
+                  for (let y = 0; y < this.taches[i]["nbrAm"]; y++) {
+                    for (let z in this.planningDays) {
+                      let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                      if (undefined == this.planningDays[z][randomWorker]) {
+                        this.planningDays[z][randomWorker] = i
+                      } else {
+
+                      }
+                    }
+                  }
+                } else if ("nbrPm" in this.taches[i]) {
+                  for (let y = 0; y < this.taches[i]["nbrPm"]; y++) {
+                    for (let z = 1; z < (this.jour.length) * 2; z++) {
+
+                      let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                      if (undefined == this.planningDays[z][randomWorker]) {
+                        this.planningDays[z][randomWorker] = i
+                      } else {
+
+                      }
+                      i++
+                    }
+
+                  }
+                }
+              } else {
+                for (let j of this.taches[i][x]) {
+                  this.jour.indexOf(j)
+                  if ("nbrAm" in this.taches[i]) {
+                    for (let y = 0; y < this.taches[i]["nbrAm"]; y++) {
+                      for (let z in this.planningDays) {
+                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        if (undefined == this.planningDays[z][randomWorker]) {
+                          this.planningDays[z][randomWorker] = i
+                        } else {
+
+                        }
+                      }
+                    }
+                  } else if ("nbrPm" in this.taches[i]) {
+                    for (let y = 0; y < this.taches[i]["nbrPm"]; y++) {
+                      for (let z = 1; z < (this.jour.length) * 2; z++) {
+
+                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        if (undefined == this.planningDays[z][randomWorker]) {
+                          this.planningDays[z][randomWorker] = i
+                        } else {
+
+                        }
+                        i++
+                      }
+
+                    }
+                  }
+                }
               }
             }
-            if (x == "nbrAm") {
-              
-            }
-            if (x == "nbrPm") {
-              
-            }
+
           }
         }
         /** 
