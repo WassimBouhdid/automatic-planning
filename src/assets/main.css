@@ -17,3 +17,43 @@ a,
   
 
 }
+
+.USI{
+  background-color: orange;
+  color: white;
+}
+
+.guichet{
+  background-color: green;
+  color: white;
+}
+
+.Colis{
+  background-color: red;
+  color: white;
+}
+
+.Encodage{
+  background-color: blue;
+  color: white;
+}
+
+.Urgences{
+  background-color: rgb(255, 0, 128);
+  color: white;
+}
+
+.chimio{
+  background-color:rgb(118, 42, 165);
+  color: white;
+}
+
+.Chariots{
+  background-color:cyan ;
+  color: white;
+}
+
+.prepMag{
+  background-color:black;
+  color: white;
+}

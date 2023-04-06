@@ -210,8 +210,9 @@
         
       </tbody>
     </table>
-    <button> généré un planning aléatoire</button>
-    <button @click="generatePlanning()">télécharger le tableau</button>
+    <button @click="generatePlanning()"> généré un planning aléatoire</button>
+    <button @click="deletePlanning()">supprimer le planning</button>
+    <button>télécharger le tableau</button>
   </div>
 </template>
 <script>
@@ -232,7 +233,7 @@
             jour: 'tous',
             nbrAm: 2
           },
-          "prep. Mag.": {
+          "prepMag": {
             jour: 'tous',
             nbrPm: 1
           },
@@ -303,7 +304,8 @@
           nom10: [],
           nom11: [],
           nom12: [],
-          nom13: []
+          nom13: [],
+          nom14: []
         },
         planningDays: {
           lundiAm: [],
@@ -317,12 +319,14 @@
           vendrediAm: [],
           vendrediPm: []
         },
-        jour: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi']
+        jour: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'],
+        timeStamp: ['lundiAm', 'lundiPm', 'mardiAm', 'mardiPm', 'mercrediAm', 'mercrediPm', 'jeudiAm', 'jeudiPm', 'vendrediAm', 'vendrediPm']
 
       }
     },
     methods: {
-      generatePlanning() {
+      generatePlanning(){
+
         this.planningDays = {
           lundiAm: [],
           lundiPm: [],
@@ -335,6 +339,14 @@
           vendrediAm: [],
           vendrediPm: []
         }
+
+        for (let t in this.planningDays) {
+          for (let u = 0; u < 14; u++) {
+            document.getElementsByClassName(t)[u].innerHTML = ""
+            document.getElementsByClassName(t)[u].className = t
+          }
+        }
+
         for (let i in this.taches) {
           for (let x in this.taches[i]) {
             if (x == "jour") {
@@ -344,9 +356,9 @@
 
                     for (let z in this.planningDays) {
                       if (z.endsWith('Am')) {
-                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        let randomWorker = Math.floor(Math.random() * (13 - 0) + 0)
                         while (undefined != this.planningDays[z][randomWorker]) {
-                          randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                          randomWorker = Math.floor(Math.random() * (13 - 0) + 0)
 
                         }
                         this.planningDays[z][randomWorker] = i
@@ -356,14 +368,14 @@
 
                     }
                   }
-                } 
+                }
                 if ("nbrPm" in this.taches[i]) {
                   for (let y = 0; y < this.taches[i]["nbrPm"]; y++) {
                     for (let z in this.planningDays) {
                       if (z.endsWith('Pm')) {
-                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        let randomWorker = Math.floor(Math.random() * (13 - 0) + 0)
                         while (undefined != this.planningDays[z][randomWorker]) {
-                          randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                          randomWorker = Math.floor(Math.random() * (13 - 0) + 0)
 
                         }
                         this.planningDays[z][randomWorker] = i
@@ -374,11 +386,40 @@
                   }
                 }
               }
+
             }
 
           }
         }
+        // console.log(this.planningDays)
+        // console.log(document.getElementsByClassName(t)[0])
+        for (let t in this.planningDays) {
+          for (let u = 0; u < 14; u++) {
+            document.getElementsByClassName(t)[u].innerHTML = this.planningDays[t][u]
+            document.getElementsByClassName(t)[u].className += " " + this.planningDays[t][u]
+          }
+        }
+      },
+      deletePlanning(){
+        this.planningDays = {
+          lundiAm: [],
+          lundiPm: [],
+          mardiAm: [],
+          mardiPm: [],
+          mercrediAm: [],
+          mercrediPm: [],
+          jeudiAm: [],
+          jeudiPm: [],
+          vendrediAm: [],
+          vendrediPm: []
+        }
 
+        for (let t in this.planningDays) {
+          for (let u = 0; u < 14; u++) {
+            document.getElementsByClassName(t)[u].innerHTML = ""
+            document.getElementsByClassName(t)[u].className = t
+          }
+        }
       }
     },
     computed: {
