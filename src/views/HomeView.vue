@@ -226,7 +226,7 @@
           "guichet": {
             jour: 'tous',
             nbrAm: 2,
-            nbPm: 2
+            nbrPm: 2
           },
           "chimio": {
             jour: 'tous',
@@ -323,65 +323,54 @@
     },
     methods: {
       generatePlanning() {
-
+        this.planningDays = {
+          lundiAm: [],
+          lundiPm: [],
+          mardiAm: [],
+          mardiPm: [],
+          mercrediAm: [],
+          mercrediPm: [],
+          jeudiAm: [],
+          jeudiPm: [],
+          vendrediAm: [],
+          vendrediPm: []
+        }
         for (let i in this.taches) {
           for (let x in this.taches[i]) {
             if (x == "jour") {
               if (this.taches[i][x] == "tous") {
                 if ("nbrAm" in this.taches[i]) {
                   for (let y = 0; y < this.taches[i]["nbrAm"]; y++) {
+
                     for (let z in this.planningDays) {
-                      let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
-                      if (undefined == this.planningDays[z][randomWorker]) {
+                      if (z.endsWith('Am')) {
+                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        while (undefined != this.planningDays[z][randomWorker]) {
+                          randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+
+                        }
                         this.planningDays[z][randomWorker] = i
                       } else {
-
+                        continue
                       }
+
                     }
                   }
-                } else if ("nbrPm" in this.taches[i]) {
+                } 
+                if ("nbrPm" in this.taches[i]) {
                   for (let y = 0; y < this.taches[i]["nbrPm"]; y++) {
-                    for (let z = 1; z < (this.jour.length) * 2; z++) {
+                    for (let z in this.planningDays) {
+                      if (z.endsWith('Pm')) {
+                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
+                        while (undefined != this.planningDays[z][randomWorker]) {
+                          randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
 
-                      let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
-                      if (undefined == this.planningDays[z][randomWorker]) {
+                        }
                         this.planningDays[z][randomWorker] = i
-                      } else {
 
                       }
-                      i++
                     }
 
-                  }
-                }
-              } else {
-                for (let j of this.taches[i][x]) {
-                  this.jour.indexOf(j)
-                  if ("nbrAm" in this.taches[i]) {
-                    for (let y = 0; y < this.taches[i]["nbrAm"]; y++) {
-                      for (let z in this.planningDays) {
-                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
-                        if (undefined == this.planningDays[z][randomWorker]) {
-                          this.planningDays[z][randomWorker] = i
-                        } else {
-
-                        }
-                      }
-                    }
-                  } else if ("nbrPm" in this.taches[i]) {
-                    for (let y = 0; y < this.taches[i]["nbrPm"]; y++) {
-                      for (let z = 1; z < (this.jour.length) * 2; z++) {
-
-                        let randomWorker = Math.floor(Math.random() * (12 - 0) + 0)
-                        if (undefined == this.planningDays[z][randomWorker]) {
-                          this.planningDays[z][randomWorker] = i
-                        } else {
-
-                        }
-                        i++
-                      }
-
-                    }
                   }
                 }
               }
@@ -389,14 +378,7 @@
 
           }
         }
-        /** 
-         * (Math.random()*10).toFixed()
-          for ( let i in this.planningGridVersionTwo){
 
-        console.log(this.planningGridVersionTwo[i])
-
-          }
-          */
       }
     },
     computed: {
