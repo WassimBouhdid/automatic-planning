@@ -101,3 +101,7 @@ td {
 th {
   width: 150px;
 }
+
+#taskList{
+  justify-content: center;
+}
