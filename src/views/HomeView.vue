@@ -207,22 +207,47 @@
           <td class="vendrediAm"></td>
           <td class="vendrediPm"></td>
         </tr>
-        
+
       </tbody>
     </table>
-    <button @click="generatePlanning()"> généré un planning aléatoire</button>
-    <button @click="deletePlanning()">supprimer le planning</button>
-    <button>télécharger le tableau</button>
+    <div>
+      <button @click="generatePlanning()"> généré un planning aléatoire</button>
+      <button @click="deletePlanning()">supprimer le planning</button>
+      <button @click="downloadsTable()">télécharger le tableau</button>
+    </div>
+    <div class="container">
+
+      <div>
+        <div id="taskList" class="row">
+          <addTask id="task1" v-if="taskNbr >1" />
+          <addTask id="task2" v-if="taskNbr >2" />
+          <addTask id="task3" v-if="taskNbr >3" />
+          <addTask id="task4" v-if="taskNbr >=4" />
+          <addTask id="task5" v-if="taskNbr >=5" />
+          <addTask id="task6" v-if="taskNbr >=6" />
+          <addTask id="task7" v-if="taskNbr >=7" />
+          <addTask id="task8" v-if="taskNbr >=8" />
+          <addTask id="task9" v-if="taskNbr >=9" />
+          <addTask id="task10" v-if="taskNbr >=10" />
+        </div>
+        <div>
+          <button @click="addTask()">add task</button>
+          <button @click="submitTasks()">submit task</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import addTask from "./addtask.vue"
   export default {
     name: 'HomeView',
     components: {
-
+      addTask
     },
     data() {
       return {
+        taskNbr:4,
         taches: {
           "guichet": {
             jour: 'tous',
@@ -457,7 +482,22 @@
             document.getElementsByClassName(t)[u].className = t
           }
         }
+      },
+      downloadsTable(){
+console.log('downloadsTable')
+      },
+      addTask(){
+        if(this.taskNbr<=10){
+          this.taskNbr=1+this.taskNbr
+        }
+        
+        console.log(this.taskNbr)
+        
+      },
+      submitTasks(){
+
       }
+      
     },
     computed: {
 
