@@ -218,18 +218,22 @@
     <div class="container">
 
       <div>
-        <div id="taskList" class="row">
-          <addTask id="task1" v-if="taskNbr >1" />
-          <addTask id="task2" v-if="taskNbr >2" />
-          <addTask id="task3" v-if="taskNbr >3" />
-          <addTask id="task4" v-if="taskNbr >=4" />
-          <addTask id="task5" v-if="taskNbr >=5" />
-          <addTask id="task6" v-if="taskNbr >=6" />
-          <addTask id="task7" v-if="taskNbr >=7" />
-          <addTask id="task8" v-if="taskNbr >=8" />
-          <addTask id="task9" v-if="taskNbr >=9" />
-          <addTask id="task10" v-if="taskNbr >=10" />
-        </div>
+        
+          <from>
+            <div id="taskList" class="row">
+              <addTask id="task1" v-if="taskNbr >1" test2="1" />
+              <addTask id="task2" v-if="taskNbr >2" test2="2" />
+              <addTask id="task3" v-if="taskNbr >3" test2="3" />
+              <addTask id="task4" v-if="taskNbr >=4" test2="4" />
+              <addTask id="task5" v-if="taskNbr >=5" test2="5" />
+              <addTask id="task6" v-if="taskNbr >=6" test2="6" />
+              <addTask id="task7" v-if="taskNbr >=7" test2="7" />
+              <addTask id="task8" v-if="taskNbr >=8" test2="8" />
+              <addTask id="task9" v-if="taskNbr >=9" test2="9" />
+              <addTask id="task10" v-if="taskNbr >=10" test2="10" />
+            </div>
+          </from>
+        
         <div>
           <button @click="addTask()">add task</button>
           <button @click="submitTasks()">submit task</button>
