@@ -218,25 +218,20 @@
     <div class="container">
 
       <div>
-        
-          <from>
-            <div id="taskList" class="row">
-              <addTask id="task1" v-if="taskNbr >1" test2="1" />
-              <addTask id="task2" v-if="taskNbr >2" test2="2" />
-              <addTask id="task3" v-if="taskNbr >3" test2="3" />
-              <addTask id="task4" v-if="taskNbr >=4" test2="4" />
-              <addTask id="task5" v-if="taskNbr >=5" test2="5" />
-              <addTask id="task6" v-if="taskNbr >=6" test2="6" />
-              <addTask id="task7" v-if="taskNbr >=7" test2="7" />
-              <addTask id="task8" v-if="taskNbr >=8" test2="8" />
-              <addTask id="task9" v-if="taskNbr >=9" test2="9" />
-              <addTask id="task10" v-if="taskNbr >=10" test2="10" />
-            </div>
-          </from>
-        
+
+        <from>
+          <div id="taskList" class="row">
+            <addTask @eventname="updateparent" />
+           
+          </div>
+         
+        </from>
+
         <div>
-          <button @click="addTask()">add task</button>
-          <button @click="submitTasks()">submit task</button>
+          <rules v-for="(value, key, index) in addTaskRules" />
+          <!--
+          <button @click="saveTasksSettings()">save tasks settings</button>
+            -->
         </div>
       </div>
     </div>
@@ -244,14 +239,18 @@
 </template>
 <script>
 import addTask from "./addtask.vue"
+import rules from "./rules.vue"
   export default {
     name: 'HomeView',
     components: {
-      addTask
+      addTask,
+      rules
     },
     data() {
       return {
-        taskNbr:4,
+        taskNbr: 4,
+        
+        addTaskRules: [],
         taches: {
           "guichet": {
             jour: 'tous',
@@ -305,37 +304,6 @@ import addTask from "./addtask.vue"
             nbrAm: 1
           }
         },
-        planningGrid: [
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          []
-        ],
-        planningGridVersionTwo: {
-          nom1: [],
-          nom2: [],
-          nom3: [],
-          nom4: [],
-          nom5: [],
-          nom6: [],
-          nom7: [],
-          nom8: [],
-          nom9: [],
-          nom10: [],
-          nom11: [],
-          nom12: [],
-          nom13: [],
-          nom14: []
-        },
         planningDays: {
           lundiAm: [],
           lundiPm: [],
@@ -349,7 +317,6 @@ import addTask from "./addtask.vue"
           vendrediPm: []
         },
         jour: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'],
-        timeStamp: ['lundiAm', 'lundiPm', 'mardiAm', 'mardiPm', 'mercrediAm', 'mercrediPm', 'jeudiAm', 'jeudiPm', 'vendrediAm', 'vendrediPm']
 
       }
     },
@@ -487,20 +454,25 @@ import addTask from "./addtask.vue"
           }
         }
       },
-      downloadsTable(){
-console.log('downloadsTable')
-      },
-      addTask(){
-        if(this.taskNbr<=10){
-          this.taskNbr=1+this.taskNbr
-        }
-        
-        console.log(this.taskNbr)
+      saveTasksSettings(){
         
       },
-      submitTasks(){
-
-      }
+      updateparent(variable) {
+        this.addTaskRules.push({
+            nom: variable.nom,
+            jour: {
+                lundi: variable.jour1.lundi,
+                mardi: variable.jour1.mardi,
+                mercredi: variable.jour1.mercredi,
+                jeudi: variable.jour1.jeudi,
+                vendredi: variable.jour1.vendredi
+            },
+            nbrAm: variable.nbrAm,
+            nbrPm: variable.nbrPm,
+            employes: variable.employes
+        })
+        console.log(this.addTaskRules)
+    }
       
     },
     computed: {
