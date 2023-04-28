@@ -217,29 +217,29 @@
     </div>
     <div class="container">
 
-      <div>
+      <div class="row">
 
-        <from>
-          <div id="taskList" class="row">
-            <addTask @eventname="updateparent" />
-           
-          </div>
+        <div class="col">
+          <rules :rulesList="addTaskRules" />
+      
+          <button @click="displayForm()">ajouter une tâches</button>
          
-        </from>
-
-        <div>
-          <rules v-for="(value, key, index) in addTaskRules" />
-          <!--
-          <button @click="saveTasksSettings()">save tasks settings</button>
-            -->
         </div>
+        <div class="col">
+          <from>
+            <addTask @eventname="updateparent" @deleteform="displayForm" v-if="this.formActive == true" />
+          </from>
+        </div>
+       
       </div>
     </div>
   </div>
 </template>
 <script>
+
 import addTask from "./addtask.vue"
 import rules from "./rules.vue"
+
   export default {
     name: 'HomeView',
     components: {
@@ -249,7 +249,7 @@ import rules from "./rules.vue"
     data() {
       return {
         taskNbr: 4,
-        
+        formActive:false,
         addTaskRules: [],
         taches: {
           "guichet": {
@@ -461,18 +461,39 @@ import rules from "./rules.vue"
         this.addTaskRules.push({
             nom: variable.nom,
             jour: {
-                lundi: variable.jour1.lundi,
-                mardi: variable.jour1.mardi,
-                mercredi: variable.jour1.mercredi,
-                jeudi: variable.jour1.jeudi,
-                vendredi: variable.jour1.vendredi
+                lundi:{
+                        checked: variable.jour1.lundi.checked,
+                        nbrAm: variable.jour1.lundi.nbrAm,
+                        nbrPm: variable.jour1.lundi.nbrPm
+                    },
+                mardi: {
+                        checked: variable.jour1.mardi.checked,
+                        nbrAm: variable.jour1.mardi.nbrAm,
+                        nbrPm: variable.jour1.mardi.nbrPm
+                    },
+                mercredi: {
+                        checked: variable.jour1.mercredi.checked,
+                        nbrAm: variable.jour1.mercredi.nbrAm,
+                        nbrPm: variable.jour1.mercredi.nbrPm
+                    },
+                jeudi: {
+                        checked: variable.jour1.jeudi.checked,
+                        nbrAm: variable.jour1.jeudi.nbrAm,
+                        nbrPm: variable.jour1.jeudi.nbrPm
+                    },
+                vendredi: {
+                        checked: variable.jour1.vendredi.checked,
+                        nbrAm: variable.jour1.vendredi.nbrAm,
+                        nbrPm: variable.jour1.vendredi.nbrPm
+                    },
             },
-            nbrAm: variable.nbrAm,
-            nbrPm: variable.nbrPm,
             employes: variable.employes
         })
         console.log(this.addTaskRules)
-    }
+    },
+    displayForm(){
+      this.formActive = !this.formActive
+    },
       
     },
     computed: {
