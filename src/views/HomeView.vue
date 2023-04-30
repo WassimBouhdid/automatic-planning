@@ -263,6 +263,30 @@ export default {
         vendrediAm: [],
         vendrediPm: []
       },
+      planningColors: {
+        lundiAm: [],
+        lundiPm: [],
+        mardiAm: [],
+        mardiPm: [],
+        mercrediAm: [],
+        mercrediPm: [],
+        jeudiAm: [],
+        jeudiPm: [],
+        vendrediAm: [],
+        vendrediPm: []
+      },
+      planningColors2:{
+      lundiAm: [[], [], [], [], [], [], [], 'fixe', [], [], [], [], [], 'fixe'],
+        lundiPm: [[], [], [], [], [], [], [], 'fixe', [], [], [], [], [], 'fixe'],
+        mardiAm: [[], [], [], [], [], [], [], [], [], 'fixe', [], [], [], 'fixe'],
+        mardiPm: [[], [], [], [], [], [], [], [], [], 'fixe', [], [], [], 'fixe'],
+        mercrediAm: [[], [], [], 'fixe', [], 'fixe', 'fixe', [], [], [], [], 'fixe'],
+        mercrediPm: [[], [], [], 'fixe', [], 'fixe', 'fixe', [], [], [], [], 'fixe'],
+        jeudiAm: [[], [], [], [], [], [], [], [], [], [], [], [], [],  []],
+        jeudiPm: [[], [], [], [], [], [], [],  [], [], [], [], [], [],  []],
+        vendrediAm: [[], 'fixe', [], [], [], [], [],  [], [], [], [], [], [],  []],
+        vendrediPm: [[], 'fixe', [], [], [], [], [],  [], [], [], [], [], [],  []],
+      },
       jour: ['lundiAm', 'lundiPm', 'mardiAm', 'mardiPm', 'mercrediAm', 'mercrediPm', 'jeudiAm', 'jeudiPm', 'vendrediAm', 'vendrediPm'],
       employe: ["nom1", "nom2", "nom3", "nom4", "nom5", "nom6", "nom7", "nom8", "nom9", "nom10", "nom11", "nom12", "nom13", "nom14"]
 
@@ -283,6 +307,7 @@ export default {
         vendrediAm: [, 'fixe'],
         vendrediPm: [, 'fixe']
       }
+      
 
       for (let t in this.planningDays) {
         for (let u = 0; u < 14; u++) {
@@ -296,29 +321,32 @@ export default {
           for (let k in this.addTaskRules[i].jour[j]) {
 
             if (k == "checked" && this.addTaskRules[i].jour[j][k]) {
+              
 
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrAm"]; l++) {
                 for (let z in this.planningDays) {
-                  if (z.endsWith('Am')) {
+                  if (z == j+'Am') {
                     let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
                     while (undefined != this.planningDays[z][randomWorker]) {
                       randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
 
                     }
-                    this.planningDays[z][randomWorker][0] = this.addTaskRules[i]['nom']
+                    this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                    this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
                   }
                 }
               }
 
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrPm"]; l++) {
                 for (let z in this.planningDays) {
-                  if (z.endsWith('Pm')) {
+                  if (z == j+'Pm') {
                     let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
                     while (undefined != this.planningDays[z][randomWorker]) {
                       randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
 
                     }
-                    this.planningDays[z][randomWorker][0] = this.addTaskRules[i]['nom']
+                    this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                    this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
                   }
                 }
               }
@@ -332,10 +360,18 @@ export default {
 
       for (let t in this.planningDays) {
         for (let u = 0; u < 14; u++) {
-          document.getElementsByClassName(t)[u].innerHTML = this.planningDays[t][u]
-          /**document.getElementsByClassName(t)[u].style = "background-color:"+ this.planningDays[t][u]
-          */
+          if( !this.planningDays[t][u] ){
+
+            document.getElementsByClassName(t)[u].innerHTML = ""
+            document.getElementsByClassName(t)[u].style = "border:1px solid #000 !important;"
+            document.getElementsByClassName(t)[u].style += "background-color: #fff;"
+          }else{
+            document.getElementsByClassName(t)[u].innerHTML = this.planningDays[t][u]
+          document.getElementsByClassName(t)[u].style = "background-color:"+ this.planningColors[t][u]
+          
          document.getElementsByClassName(t)[u].className += " " + this.planningDays[t][u]
+          }
+          
         }
       }
     },
@@ -357,6 +393,8 @@ export default {
         for (let u = 0; u < 14; u++) {
           document.getElementsByClassName(t)[u].innerHTML = ""
           document.getElementsByClassName(t)[u].className = t
+          document.getElementsByClassName(t)[u].style = "border:1px solid #000 !important;"
+            document.getElementsByClassName(t)[u].style += "background-color: #fff;"
         }
       }
     },
@@ -400,6 +438,10 @@ export default {
     displayForm() {
       this.formActive = !this.formActive
     },
+    deleteRule(name){
+      const found = this.addTaskRules.find(element => element.nom == name);
+      this.addTaskRules.splice(this.addTaskRules.indexOf(found), 1)
+    }
 
   },
   computed: {
