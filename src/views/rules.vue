@@ -5,7 +5,7 @@
         <div style="display:flex;justify-content: space-between;">
           <h5 class="card-title">{{ item.nom }}</h5>
           <button type="button" class="btn btn-danger"
-            style="margin-left:0px !important;margin-right:0px !important;margin-top:0px !important;" v-bind:click="deleteRule()">X</button>
+            style="margin-left:0px !important;margin-right:0px !important;margin-top:0px !important;" v-bind:click="deleteRule(item.nom )">X</button>
         </div>
         <div v-for="(value, key, index) in item.jour">
           <h5 class="card-subtitle mb-2 text-muted">{{ key }}</h5>
@@ -43,8 +43,9 @@ export default {
     },
     data() {},
     methods: {
-      deleteRule(){
-        this.$emit('eventname', this.addTaskForm2)
+      deleteRule(name){
+        this.$emit('deleteRule2', name)
+        console.log('test delete')
       }
     }
 }
