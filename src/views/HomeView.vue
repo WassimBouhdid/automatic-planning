@@ -211,17 +211,18 @@
       </tbody>
     </table>
     
-    <div>
+    <div style="display:flex">
       <button @click="generatePlanning()"> généré un planning aléatoire</button>
       <button @click="deletePlanning()">supprimer le planning</button>
       <button @click="downloadsTable()">télécharger le tableau</button>
+      <button @click="saveRules()">enregistrer les règles</button>
     </div>
     <div class="container">
 
       <div class="row">
 
         <div class="col">
-          <rules :rulesList="addTaskRules" />
+          <rules :rulesList="addTaskRules" @deleteRule2="deleteRule"/>
       
           <button @click="displayForm()">ajouter une tâches</button>
          
@@ -295,6 +296,12 @@ export default {
   methods: {
     generatePlanning() {
 
+/**
+
+var emptyTableCell = test.length - test.filter(String).length;
+
+ */
+
       this.planningDays = {
         lundiAm: [, , , , , , , 'fixe', , , , , , 'fixe'],
         lundiPm: [, , , , , , , 'fixe', , , , , , 'fixe'],
@@ -307,7 +314,7 @@ export default {
         vendrediAm: [, 'fixe'],
         vendrediPm: [, 'fixe']
       }
-      
+
 
       for (let t in this.planningDays) {
         for (let u = 0; u < 14; u++) {
@@ -321,37 +328,71 @@ export default {
           for (let k in this.addTaskRules[i].jour[j]) {
 
             if (k == "checked" && this.addTaskRules[i].jour[j][k]) {
-              
 
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrAm"]; l++) {
                 for (let z in this.planningDays) {
-                  if (z == j+'Am') {
-                    let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
-                    while (undefined != this.planningDays[z][randomWorker]) {
-                      randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                  if (z == j + 'Am') {
+                    console.log(this.planningDays[z].length - this.planningDays[z].filter(String).length)
+                    if (this.addTaskRules[i]['employes'][0] == 'tous') {
+                      let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                      while (undefined != this.planningDays[z][randomWorker]) {
+                        randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+
+                      }
+                      this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                      this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
+                    } else {
+                      let employes = []
+                      for (let a of this.addTaskRules[i]['employes']) {
+                        employes.push(this.employe.indexOf(a))
+                      }
+                      let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                      while (undefined != this.planningDays[z][employes[randomWorker]]) {
+                        randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                      }
+                      this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
+                      this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
 
                     }
-                    this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
-                    this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
+
                   }
                 }
               }
 
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrPm"]; l++) {
                 for (let z in this.planningDays) {
-                  if (z == j+'Pm') {
-                    let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
-                    while (undefined != this.planningDays[z][randomWorker]) {
-                      randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                  if (z == j + 'Pm') {
+                    console.log(this.planningDays[z].length - this.planningDays[z].filter(String).length)
 
+                    if (this.addTaskRules[i]['employes'][0] == 'tous') {
+                      let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                      while (undefined != this.planningDays[z][randomWorker]) {
+                        randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+
+                      }
+                      this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                      this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
+                    } else {
+                      let employes = []
+                      for (let a of this.addTaskRules[i]['employes']) {
+                        employes.push(this.employe.indexOf(a))
+                      }
+                      let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                      while (undefined != this.planningDays[z][employes[randomWorker]]) {
+                        randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                      }
+                      this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
+                      this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
                     }
-                    this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
-                    this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
                   }
                 }
               }
 
-              
+
 
             }
           }
@@ -360,18 +401,18 @@ export default {
 
       for (let t in this.planningDays) {
         for (let u = 0; u < 14; u++) {
-          if( !this.planningDays[t][u] ){
+          if (!this.planningDays[t][u]) {
 
             document.getElementsByClassName(t)[u].innerHTML = ""
             document.getElementsByClassName(t)[u].style = "border:1px solid #000 !important;"
             document.getElementsByClassName(t)[u].style += "background-color: #fff;"
-          }else{
+          } else {
             document.getElementsByClassName(t)[u].innerHTML = this.planningDays[t][u]
-          document.getElementsByClassName(t)[u].style = "background-color:"+ this.planningColors[t][u]
-          
-         document.getElementsByClassName(t)[u].className += " " + this.planningDays[t][u]
+            document.getElementsByClassName(t)[u].style = "background-color:" + this.planningColors[t][u]
+
+            document.getElementsByClassName(t)[u].className += " " + this.planningDays[t][u]
           }
-          
+
         }
       }
     },
@@ -397,9 +438,6 @@ export default {
             document.getElementsByClassName(t)[u].style += "background-color: #fff;"
         }
       }
-    },
-    saveTasksSettings() {
-
     },
     updateparent(variable) {
       this.addTaskRules.push({
@@ -441,6 +479,12 @@ export default {
     deleteRule(name){
       const found = this.addTaskRules.find(element => element.nom == name);
       this.addTaskRules.splice(this.addTaskRules.indexOf(found), 1)
+    },
+    saveRules(){
+      
+      JSON.parse
+      localStorage.setItem("rules",JSON.stringify(this.addTaskRules));
+      console.log(JSON.parse(localStorage.getItem("rules")))
     }
 
   },

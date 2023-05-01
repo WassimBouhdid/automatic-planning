@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="card" style="width: 35rem;">
+    <div class="card" style="width: 35rem; margin-right: auto;margin-left: auto;">
         <div class="card-body">
             <div style="display:flex;justify-content: space-between;">
                 <h5 class="card-title"> créer une tâches </h5>
@@ -20,12 +20,12 @@
                         <div v-if="addTaskForm2.jour1.lundi.checked == true">
                             <div>
                                 <label> lundi nombre AM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.lundi.nbrAm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.lundi.nbrAm">
                             </div>
 
                             <div>
                                 <label> lundi nombre PM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.lundi.nbrPm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.lundi.nbrPm">
                             </div>
                         </div>
                     </div>
@@ -35,12 +35,12 @@
                         <div v-if="addTaskForm2.jour1.mardi.checked == true">
                             <div>
                                 <label>mardi nombre AM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.mardi.nbrAm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.mardi.nbrAm">
                             </div>
 
                             <div>
                                 <label>mardi nombre PM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.mardi.nbrPm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.mardi.nbrPm">
                             </div>
                         </div>
                     </div>
@@ -50,12 +50,12 @@
                         <div v-if="addTaskForm2.jour1.mercredi.checked == true">
                             <div>
                                 <label>mercredi nombre AM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.mercredi.nbrAm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.mercredi.nbrAm">
                             </div>
 
                             <div>
                                 <label>mercredi nombre PM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.mercredi.nbrPm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.mercredi.nbrPm">
                             </div>
                         </div>
                     </div>
@@ -65,12 +65,12 @@
                         <div v-if="addTaskForm2.jour1.jeudi.checked == true">
                             <div>
                                 <label>jeudi nombre AM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.jeudi.nbrAm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.jeudi.nbrAm">
                             </div>
 
                             <div>
                                 <label>jeudi nombre PM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.jeudi.nbrPm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.jeudi.nbrPm">
                             </div>
                         </div>
                     </div>
@@ -80,12 +80,12 @@
                         <div v-if="addTaskForm2.jour1.vendredi.checked == true">
                             <div>
                                 <label>vendredi nombre AM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.vendredi.nbrAm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.vendredi.nbrAm">
                             </div>
 
                             <div>
                                 <label>vendredi nombre PM </label>
-                                <input type="number" v-model="addTaskForm2.jour1.vendredi.nbrPm">
+                                <input min=0 type="number" v-model="addTaskForm2.jour1.vendredi.nbrPm">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,6 @@
                     <label for="pet-select">Sélectionné les employés à assigné à la taches :</label>
 
                     <select id="pet-select" multiple size="7" v-model="addTaskForm2.employes">
-                        <option value="">--Please choose an option--</option>
                         <option value="tous">Tout le monde</option>
                         <option value="nom1">nom1</option>
                         <option value="nom2">nom2</option>
@@ -127,6 +126,7 @@
 export default {
     name: 'addTask',
     props:['test2'] ,
+    emits: ["eventname","deleteform"],
     components: {
       
     },
