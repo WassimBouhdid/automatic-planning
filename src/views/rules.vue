@@ -11,22 +11,22 @@
           <h5 class="card-subtitle mb-2 text-muted">{{ key }}</h5>
           <div class="row">
             <div class="col">
-              <h6> nbrAm </h6>
+              <h6> nbr Am :</h6>
               <p>{{ value.nbrAm }}</p>
             </div>
             <div class="col">
-              <h6>nbrPm</h6>
+              <h6>nbr Pm :</h6>
               <p>{{ value.nbrPm }}</p>
             </div>
           </div>
           <hr>
         </div>
-        <h5> les employés selectionnés</h5>
+        <h5> les employés selectionnés :</h5>
         <div v-for="(value, key, index) in item.employes">
 
           <p class="card-text"> {{ value }}</p>
         </div>
-        <h5> couleur </h5>
+        <h5> couleur :</h5>
         <div v-bind:style="{'background-color': item.color}">
           {{ item.color }}
         </div>

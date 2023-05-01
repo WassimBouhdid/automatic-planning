@@ -228,9 +228,9 @@
          
         </div>
         <div class="col">
-          <from>
+          
             <addTask @eventname="updateparent" @deleteform="displayForm" v-if="this.formActive == true" />
-          </from>
+          
         </div>
        
       </div>
@@ -276,18 +276,6 @@ export default {
         vendrediAm: [],
         vendrediPm: []
       },
-      planningColors2:{
-      lundiAm: [[], [], [], [], [], [], [], 'fixe', [], [], [], [], [], 'fixe'],
-        lundiPm: [[], [], [], [], [], [], [], 'fixe', [], [], [], [], [], 'fixe'],
-        mardiAm: [[], [], [], [], [], [], [], [], [], 'fixe', [], [], [], 'fixe'],
-        mardiPm: [[], [], [], [], [], [], [], [], [], 'fixe', [], [], [], 'fixe'],
-        mercrediAm: [[], [], [], 'fixe', [], 'fixe', 'fixe', [], [], [], [], 'fixe'],
-        mercrediPm: [[], [], [], 'fixe', [], 'fixe', 'fixe', [], [], [], [], 'fixe'],
-        jeudiAm: [[], [], [], [], [], [], [], [], [], [], [], [], [],  []],
-        jeudiPm: [[], [], [], [], [], [], [],  [], [], [], [], [], [],  []],
-        vendrediAm: [[], 'fixe', [], [], [], [], [],  [], [], [], [], [], [],  []],
-        vendrediPm: [[], 'fixe', [], [], [], [], [],  [], [], [], [], [], [],  []],
-      },
       jour: ['lundiAm', 'lundiPm', 'mardiAm', 'mardiPm', 'mercrediAm', 'mercrediPm', 'jeudiAm', 'jeudiPm', 'vendrediAm', 'vendrediPm'],
       employe: ["nom1", "nom2", "nom3", "nom4", "nom5", "nom6", "nom7", "nom8", "nom9", "nom10", "nom11", "nom12", "nom13", "nom14"]
 
@@ -296,12 +284,11 @@ export default {
   methods: {
     generatePlanning() {
 
-/**
+      /**
 
-var emptyTableCell = test.length - test.filter(String).length;
+      var emptyTableCell = test.length - test.filter(String).length;
 
- */
-
+      */
       this.planningDays = {
         lundiAm: [, , , , , , , 'fixe', , , , , , 'fixe'],
         lundiPm: [, , , , , , , 'fixe', , , , , , 'fixe'],
@@ -309,8 +296,8 @@ var emptyTableCell = test.length - test.filter(String).length;
         mardiPm: [, , , , , , , , , 'fixe', , , , 'fixe'],
         mercrediAm: [, , , 'fixe', , 'fixe', 'fixe', , , , , 'fixe'],
         mercrediPm: [, , , 'fixe', , 'fixe', 'fixe', , , , , 'fixe'],
-        jeudiAm: [],
-        jeudiPm: [],
+        jeudiAm: [, , , , , , , , , , , , , ],
+        jeudiPm: [, , , , , , , , , , , , , ],
         vendrediAm: [, 'fixe'],
         vendrediPm: [, 'fixe']
       }
@@ -332,29 +319,49 @@ var emptyTableCell = test.length - test.filter(String).length;
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrAm"]; l++) {
                 for (let z in this.planningDays) {
                   if (z == j + 'Am') {
-                    console.log(this.planningDays[z].length - this.planningDays[z].filter(String).length)
-                    if (this.addTaskRules[i]['employes'][0] == 'tous') {
-                      let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
-                      while (undefined != this.planningDays[z][randomWorker]) {
-                        randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
 
+                    if (this.addTaskRules[i]['employes'][0] == 'tous') {
+                      if (Boolean(this.planningDays[z].length - this.planningDays[z].filter(String).length)){
+                        let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                        while (undefined != this.planningDays[z][randomWorker]) {
+                          randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+
+                        }
+                        this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                        this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
+                      } else {
+                        console.log('pas assez de place AM TOUS')
+                        continue
+                        
                       }
-                      this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
-                      this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
                     } else {
                       let employes = []
+                      let employesTask = []
+
                       for (let a of this.addTaskRules[i]['employes']) {
                         employes.push(this.employe.indexOf(a))
                       }
-                      let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
 
-                      while (undefined != this.planningDays[z][employes[randomWorker]]) {
-                        randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
-
+                      for (let b of employes) {
+                        employesTask.push(this.planningDays[z][b])
                       }
-                      this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
-                      this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
+                      if (Boolean(employesTask.length - employesTask.filter(x => x !== undefined).length)){
+                        let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
 
+                        while (undefined != this.planningDays[z][employes[randomWorker]]) {
+                          randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                        }
+
+                        this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
+                        this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
+
+                      }else{ 
+                        console.log('pas assez de place AM EMPLOYE')
+
+                        continue
+                      }
+                   
                     }
 
                   }
@@ -364,29 +371,51 @@ var emptyTableCell = test.length - test.filter(String).length;
               for (let l = 0; l < this.addTaskRules[i].jour[j]["nbrPm"]; l++) {
                 for (let z in this.planningDays) {
                   if (z == j + 'Pm') {
-                    console.log(this.planningDays[z].length - this.planningDays[z].filter(String).length)
 
                     if (this.addTaskRules[i]['employes'][0] == 'tous') {
-                      let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
-                      while (undefined != this.planningDays[z][randomWorker]) {
-                        randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                      if (Boolean(this.planningDays[z].length - this.planningDays[z].filter(String).length)) {
+                        let randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
+                        while (undefined != this.planningDays[z][randomWorker]) {
+                          randomWorker = Math.floor(Math.random() * (14 - 0) + 0)
 
+                        }
+
+                        this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
+                        this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
+
+                      } else {
+                        console.log('pas assez de place PM TOUS')
+                        continue
+                        
                       }
-                      this.planningDays[z][randomWorker] = this.addTaskRules[i]['nom']
-                      this.planningColors[z][randomWorker] = this.addTaskRules[i]['color']
                     } else {
+
+                      let employesTask = []
                       let employes = []
+
                       for (let a of this.addTaskRules[i]['employes']) {
                         employes.push(this.employe.indexOf(a))
                       }
-                      let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
 
-                      while (undefined != this.planningDays[z][employes[randomWorker]]) {
-                        randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
-
+                      for (let b of employes) {
+                        employesTask.push(this.planningDays[z][b])
                       }
-                      this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
-                      this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
+                      if (Boolean(employesTask.length - employesTask.filter(x => x !== undefined).length)){
+                        let randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                        while (undefined != this.planningDays[z][employes[randomWorker]]) {
+                          randomWorker = Math.floor(Math.random() * (employes.length - 0) + 0)
+
+                        }
+
+                        this.planningDays[z][employes[randomWorker]] = this.addTaskRules[i]['nom']
+                        this.planningColors[z][employes[randomWorker]] = this.addTaskRules[i]['color']
+
+                      }else{
+                        console.log('pas assez de place PM EMPLOYE')
+                        continue
+                      }
+
                     }
                   }
                 }
@@ -482,10 +511,9 @@ var emptyTableCell = test.length - test.filter(String).length;
     },
     saveRules(){
       
-      JSON.parse
       localStorage.setItem("rules",JSON.stringify(this.addTaskRules));
-      console.log(JSON.parse(localStorage.getItem("rules")))
-    }
+      this.addTaskRules = JSON.parse(localStorage.getItem("rules"))
+    },
 
   },
   computed: {
