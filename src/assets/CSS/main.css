@@ -22,68 +22,9 @@ td{
   text-align: center;
 }
 
-.USI{
-  background-color: orange;
-  color: white;
-}
 
-.guichet{
-  background-color: green;
-  color: white;
-}
-
-.Colis{
-  background-color: red;
-  color: white;
-}
-
-.Encodage{
-  background-color: blue;
-  color: white;
-}
-
-.Urgences{
-  background-color: rgb(255, 0, 128);
-  color: white;
-}
-
-.chimio{
-  background-color:rgb(118, 42, 165);
-  color: white;
-}
-
-.Chariots{
-  background-color:cyan ;
-  color: white;
-}
-
-.prepMag{
-  background-color:black;
-  color: white;
-}
 
 .fixe{
   background-color:grey;
   color: white;
-}
-
-.TPNNeon{
-   background-color:maroon;
-  color: white;
-}
-
-.Stups{
-  background-color:brown;
- color: white;
-}
-
-.conge{
-  background: linear-gradient(45deg, #000 6.25%, #fff 6.25%, #fff 43.75%, #000 43.75%, #000 56.25%, #fff 56.25%, #fff 93.75%, #000 93.75%);
-  background-size: 15px 15px;
-  background-position: 50px 50px;
-}
-
-.QOp{
-  background-color:rgb(25, 112, 48);
- color: white;
 }

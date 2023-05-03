@@ -24,216 +24,6 @@
           <th colspan="1">PM</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>nom 1</td>
-          <td class="lundiAm" id="test">lalalala</td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 2</td>
-          <td class="lundiAm" id="test2">popopopooooooo</td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 3</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 4</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 5</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 6</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 7</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 8</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 9</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 10</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 11</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 12</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 13</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-        <tr>
-          <td>nom 14</td>
-          <td class="lundiAm"></td>
-          <td class="lundiPm"></td>
-          <td class="mardiAm"></td>
-          <td class="mardiPm"></td>
-          <td class="mercrediAm"></td>
-          <td class="mercrediPm"></td>
-          <td class="jeudiAm"></td>
-          <td class="jeudiPm"></td>
-          <td class="vendrediAm"></td>
-          <td class="vendrediPm"></td>
-        </tr>
-
-      </tbody>
-    </table>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="1" >Nom & prénom</th>
-          <th colspan="2">Lundi</th>
-          <th colspan="2">Mardi</th>
-          <th colspan="2">Mercredi</th>
-          <th colspan="2">Jeudi</th>
-          <th colspan="2">Vendredi</th>
-        </tr>
-        <tr>
-          <th colspan="1"></th>
-          <th colspan="1">AM</th>
-          <th colspan="1">PM</th>
-          <th colspan="1">AM</th>
-          <th colspan="1">PM</th>
-          <th colspan="1">AM</th>
-          <th colspan="1">PM</th>
-          <th colspan="1">AM</th>
-          <th colspan="1">PM</th>
-          <th colspan="1">AM</th>
-          <th colspan="1">PM</th>
-        </tr>
-      </thead>
     <tbody>
         <tr v-for="(value, key, index) in employe">
           <td>{{ value }}</td>
@@ -278,7 +68,6 @@
       </div>
     </div>
   </div>
-  <button id="test">ceci est un test</button>
 
 </template>
 <script>
@@ -304,6 +93,8 @@ export default {
         selectTwoId: "",
         selectOneText: "",
         selectTwoText: "",
+        selectOneStyle: "",
+        selectTwoStyle: "",
         taskNbr: 4,
         formActive: false,
         addTaskRules: [],
@@ -570,21 +361,27 @@ export default {
         this.addTaskRules = JSON.parse(localStorage.getItem("rules"))
       },
       testing(e) {
-
         if (!this.selectOneId) {
-
-          this.selectOneId = e.target.id
+          console.log('test')
+          if(Boolean(e.target.innerHTML)){
+            this.selectOneId = e.target.id
           this.selectOneText = e.target.innerHTML
-
-          document.getElementById(this.selectOneId).style = "border:red 2px solid !important"
+          this.selectOneStyle = e.target.style['background-color']
+          }
+          
 
         } else {
 
+
           this.selectTwoId = e.target.id
           this.selectTwoText = e.target.innerHTML
+          this.selectTwoStyle = e.target.style['background-color']
 
           document.getElementById(this.selectOneId).innerHTML = this.selectTwoText
           document.getElementById(this.selectTwoId).innerHTML = this.selectOneText
+
+          document.getElementById(this.selectOneId).style['background-color'] = this.selectTwoStyle
+          document.getElementById(this.selectTwoId).style['background-color'] = this.selectOneStyle
 
           document.getElementById(this.selectOneId).style = "border:black 1px solid !important"
 
