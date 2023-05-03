@@ -108,7 +108,7 @@
                         <label for="pet-select">Sélectionné les employés à assigné à la taches :</label>
 
                         <select id="pet-select"  multiple size="7" v-model="addTaskForm.employes">
-                            <option value="tous" >Tout le monde</option>
+                            <option value="tous" >Tous</option>
                             <option value="nom1">nom1</option>
                             <option value="nom2">nom2</option>
                             <option value="nom3">nom3</option>
@@ -193,7 +193,6 @@ export default {
     },
     methods: {
       submitTasks() {
-console.log(this.addTaskForm.jour1["lundi"]['nbrAm'])
               if (this.addTaskForm.nom) {
                   this.errorNameTask = false
               } else {
@@ -220,7 +219,8 @@ console.log(this.addTaskForm.jour1["lundi"]['nbrAm'])
                   }
               }
               for (let i in this.addTaskForm.jour1) {
-                  if (!Boolean(this.addTaskForm.jour1[i]['nbrAm']) || Boolean(this.addTaskForm.jour1[i]['nbrPm'])) {
+               
+                  if (!(Boolean(this.addTaskForm.jour1[i]['nbrAm']) && Boolean(this.addTaskForm.jour1[i]['nbrPm']))) {
                       this.errorEmptyNbr = true
                   } else {
                       this.errorEmptyNbr = false
@@ -234,8 +234,6 @@ console.log(this.addTaskForm.jour1["lundi"]['nbrAm'])
                   this.errorNoEmploye = true
               }
 
-                // console.log(!(this.errorNbrTask || this.errorEmptyNbr || this.errorNameTask || this.errorNoEmploye) || !Boolean(this.addTaskForm.color))
-              console.log(this.errorNbrTask,this.errorEmptyNbr,this.errorNameTask,this.errorNoEmploye,!Boolean(this.addTaskForm.color))
                 if (!(this.errorNbrTask || this.errorEmptyNbr || this.errorNameTask || this.errorNoEmploye || !Boolean(this.addTaskForm.color)) ) {
                   this.$emit('eventname', this.addTaskForm)
               }
